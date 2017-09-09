@@ -75,7 +75,12 @@ func main() {
 			os.Exit(1)
 		}
 
-		seq = seqFirst + uint64(rand.Int63n(int64(seqLast-seqFirst)))
+		var cnt int64 = int64(seqLast - seqFirst)
+		if cnt > 0 {
+			seq = seqFirst + uint64(rand.Int63n(cnt))
+		} else {
+			seq = 1
+		}
 	}
 
 	done := make(chan struct{})
